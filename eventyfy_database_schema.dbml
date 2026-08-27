@@ -1,0 +1,97 @@
+Project eventy{
+    name: "Eventy Database Schema"
+    note: "This is Eventy Database Schema"
+}
+Table User {
+    id uuid [primary key]
+    email email
+    
+}
+
+Table Event {
+    id uuid [primary key]
+    organizer_id uuid
+    category_id uuid
+    venue_id uuid
+    event_type enum
+}
+
+Table Category {
+    id uuid [primary key]
+}
+
+Table Venue {
+    id uuid [primary key]
+}
+
+Table Seat {
+    id uuid [primary key]
+    venue_id uuid
+    row string
+    column int
+}
+
+Table EventSeat {
+    id uuid [primary key]
+    event_id uuid
+    seat_id uuid
+}
+
+Table Reservation {
+    id uuid [primary key]
+    user_id uuid
+    event_id uuid
+}
+
+Table ReservationItem {
+    id uuid [primary key]
+    reservation_id uuid
+    seat_id uuid
+}
+
+Table Payment {
+    id uuid [primary key]
+    reservation_id uuid
+}
+
+Table Ticket {
+    id uuid [primary key]
+    reservation_item_id uuid
+}
+
+Table Invoice {
+    id uuid [primary key]
+    reservation_id uuid
+}
+
+Table OutboxEvent {
+    id uuid [primary key]
+}
+
+Table Notification {
+    id uuid [primary key]
+    user_id uuid
+}
+
+Ref: Event.organizer_id > User.id
+Ref: Event.category_id > Category.id
+Ref: Event.venue_id > Venue.id
+
+Ref: Seat.venue_id > Venue.id
+
+Ref: EventSeat.event_id > Event.id
+Ref: EventSeat.seat_id > Seat.id
+
+Ref: Reservation.user_id > User.id
+Ref: Reservation.event_id > Event.id
+
+Ref: ReservationItem.reservation_id > Reservation.id
+Ref: ReservationItem.seat_id > Seat.id
+
+Ref: Payment.reservation_id > Reservation.id
+
+Ref: Ticket.reservation_item_id - ReservationItem.id
+
+Ref: Invoice.reservation_id > Reservation.id
+
+Ref: Notification.user_id > User.id

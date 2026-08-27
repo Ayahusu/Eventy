@@ -1,0 +1,94 @@
+{
+  "version": "3.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "relationshipMode": "All",
+    "tablePositions": [
+      {
+        "name": "User",
+        "schemaName": "public",
+        "x": 28.159127480762592,
+        "y": -0.847020313451992
+      },
+      {
+        "name": "Event",
+        "schemaName": "public",
+        "x": 28.159127480762592,
+        "y": 111.03659794528724
+      },
+      {
+        "name": "Category",
+        "schemaName": "public",
+        "x": 376.2018732202645,
+        "y": 207.35485290681237
+      },
+      {
+        "name": "Venue",
+        "schemaName": "public",
+        "x": 28.159127480762592,
+        "y": 540.4901181419013
+      },
+      {
+        "name": "Seat",
+        "schemaName": "public",
+        "x": 376.2018732202645,
+        "y": 508.1418531404879
+      },
+      {
+        "name": "EventSeat",
+        "schemaName": "public",
+        "x": 870.9679092731737,
+        "y": 157.02796077514998
+      },
+      {
+        "name": "Reservation",
+        "schemaName": "public",
+        "x": 629.8240068679481,
+        "y": -32.84702031345199
+      },
+      {
+        "name": "ReservationItem",
+        "schemaName": "public",
+        "x": 1458.6809215503,
+        "y": 360.88156899400093
+      },
+      {
+        "name": "Payment",
+        "schemaName": "public",
+        "x": 1029.842538406985,
+        "y": -64.2491576004271
+      },
+      {
+        "name": "Ticket",
+        "schemaName": "public",
+        "x": 870.9679092731737,
+        "y": 329.1657153861613
+      },
+      {
+        "name": "Invoice",
+        "schemaName": "public",
+        "x": 1456.1949019378749,
+        "y": 65.0452351154245
+      },
+      {
+        "name": "OutboxEvent",
+        "schemaName": "public",
+        "x": 1125.7367863664058,
+        "y": 834.8724917126793
+      },
+      {
+        "name": "Notification",
+        "schemaName": "public",
+        "x": 378.48555177012395,
+        "y": 325.1398038757499
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": []
+  },
+  "views": {}
+}

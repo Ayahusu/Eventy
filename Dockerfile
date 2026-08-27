@@ -15,7 +15,9 @@ RUN uv pip install --system -r requirements.txt
 
 COPY . .
 
-RUN useradd -m django \
+# Create static directory & assign permissions to django user
+RUN mkdir -p /event/staticfiles \
+    && useradd -m django \
     && chown -R django:django /event
 
 USER django
