@@ -5,10 +5,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
+from drf_spectacular.utils import extend_schema
 
 from users.services.auth_service import AuthService
 
 
+@extend_schema(tags=["Auth API Endpoint"])
 class UserAuthViewSet(ViewSet):
     permission_classes = [AllowAny ]
     throttle_classes = [AnonRateThrottle]

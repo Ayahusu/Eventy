@@ -23,7 +23,7 @@ class Category(models.Model):
                 self.slug = f"cat-{self.pk or 'new'}"
             # Django's unique constraint will raise IntegrityError on collision.
             # For a production app, consider django-autoslug or a retry loop with transaction.
-        super().save(*args, **kwargs)
+        self.save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -191,33 +191,6 @@ class Event(models.Model):
         from django.urls import reverse
         return reverse('event_detail', kwargs={'pk': self.pk})
     
-class Registration(models.Model):
-    class RegistrationStatus(models.TextChoices):
-        PENDING = "P", "Pending"
-        CONFIRMED = "C", "Confirmed"
-        CANCELLED = "X", "Cancelled"
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registrations')
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='participants')
-    status = models.CharField(max_length=1, choices=RegistrationStatus.choices, default=RegistrationStatus.PENDING, db_index=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=['user', 'event'],
-                name='unique_user_event_registration'
-            )
-        ]
-
-        indexes = [
-            models.Index(fields=['user', 'event']),
-            models.Index(fields=['status']),
-        ]
-
-    def __str__(self):
-        return f"{self.user.email} -> {self.event.title}"
-
 class EventLike(models.Model):
     user = models.ForeignKey(
         User,
