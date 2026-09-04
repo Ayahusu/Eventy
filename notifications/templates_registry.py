@@ -1,6 +1,11 @@
-TEMPLATE = {
+"""
+Maps a template key to functions that render the subject/body for email
+and the display text for in-app/push. Add new templates here only.
+"""
+
+TEMPLATES = {
     "reservation_confirmed": {
-        "email_subject": lambda ctx: f"You're confirmed for {ctx['event_name']}",
+        "email_subject": lambda ctx: f"You're confirmed for {ctx['event_name']}!",
         "email_body": lambda ctx: (
             f"Hi! Your reservation for {ctx['event_name']} is confirmed. "
             f"Your invoice will follow shortly."
@@ -17,13 +22,13 @@ TEMPLATE = {
     },
 }
 
+
 def render(template, channel, context):
     from .exceptions import TemplateNotFound
-    if template not in TEMPLATE:
+    if template not in TEMPLATES:
         raise TemplateNotFound(template)
 
-    spec = TEMPLATE[template]
-
+    spec = TEMPLATES[template]
     if channel == "email":
         return spec["email_subject"](context), spec["email_body"](context)
     return spec["short_text"](context)
